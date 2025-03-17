@@ -21,13 +21,20 @@ public class TaskController {
         return taskService.getAllTasks();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskByID(@PathVariable Long id){
+        Task task = taskService.getTaskByID(id);
+        return ResponseEntity.ok(task);
+    }
+
     @PostMapping
     public Task createTask(@RequestBody TaskDTO taskDTO) {
         return taskService.createTask(taskDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteTask(@PathVariable Long id) {
-        return taskService.deleteTask(id);
+    public ResponseEntity<Task> deleteTask(@PathVariable Long id) {
+        Task task = taskService.getTaskByID(id);
+        return ResponseEntity.ok(task);
     }
 }

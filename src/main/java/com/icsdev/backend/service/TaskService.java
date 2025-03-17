@@ -13,4 +13,6 @@ public interface TaskService {
     Task createTask(TaskDTO taskDTO);
 
     ResponseEntity<String> deleteTask(Long id);
+
+    Task getTaskByID(Long id);
 }

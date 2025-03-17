@@ -47,7 +47,12 @@ public class TaskImpl implements TaskService {
 
         taskRepository.deleteById(id);
 
-        // Returning a success message with HTTP Status 200 OK
         return ResponseEntity.status(HttpStatus.OK).body("Deleted task with id " + id + " properly");
+    }
+
+    @Override
+    public Task getTaskByID(Long id) {
+        return taskRepository.findById(id).
+        orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
     }
 }
